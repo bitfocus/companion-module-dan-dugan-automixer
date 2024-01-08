@@ -25,7 +25,7 @@ module.exports = async function (self) {
 		{ variableId: 'sampleRate', name: 'Sample Rate' },
 		{ variableId: 'switchHeadroom', name: 'Switch Headroom' },
 		{ variableId: 'master', name: 'Master' },
-		{ variableId: 'heartBeat', name: 'HeartBeat' },
+		{ variableId: 'heartBeat', name: 'Heart Beat' },
 		{ variableId: 'lwip', name: 'LWIP' },
 		{ variableId: 'dsp', name: 'DSP' },
 		{ variableId: 'tcpip', name: 'TCPIP' },

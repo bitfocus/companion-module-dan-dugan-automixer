@@ -94,7 +94,7 @@ module.exports = {
 	checkIsTalking() {
 		let varObject = []
 		let talker = 1
-		for (let i = 1; i <= this.config.channels; i++) {
+		for (let i = 2; i <= this.config.channels; i++) {
 			talker = this.channelsAmixGain[i] > this.channelsAmixGain[talker] ? i : talker
 		}
 		if (this.channelsAmixGain[talker] >= this.config.isTalkingThreshold) {

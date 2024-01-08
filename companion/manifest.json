@@ -3,7 +3,7 @@
 	"name": "dan-dugan-automixer",
 	"shortname": "Dugan Automixer",
 	"description": "Dan Dugan Automixer Model M & N plugin for Companion",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "MIT",
 	"repository": "git+https://github.com/bitfocus/companion-module-dan-dugan-automixer.git",
 	"bugs": "https://github.com/bitfocus/companion-module-dan-dugan-automixer/issues",

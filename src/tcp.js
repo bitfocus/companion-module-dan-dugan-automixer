@@ -1,5 +1,14 @@
 const { InstanceStatus, TCPHelper } = require('@companion-module/base')
-const { msgDelay, EOM, cmdOnConnect, cmdOnPollInterval, paramSep, meterCommands, cmd } = require('./consts.js')
+const {
+	msgDelay,
+	EOM,
+	cmdOnConnect,
+	cmdOnPollInterval,
+	paramSep,
+	meterCommands,
+	cmd,
+	timeOutValue,
+} = require('./consts.js')
 
 module.exports = {
 	async addCmdtoQueue(cmd) {
@@ -33,6 +42,9 @@ module.exports = {
 				//this.log('debug', `Sending Command: ${cmd}`)
 				this.clearToTx = false
 				this.socket.send(cmd + EOM)
+				this.timeOutTimer = setTimeout(() => {
+					this.timeOut()
+				}, msgDelay[timeOutValue])
 				return true
 			} else {
 				this.log('warn', `Socket not connected, tried to send: ${cmd}`)
@@ -87,6 +99,11 @@ module.exports = {
 		return true
 	},
 
+	timeOut() {
+		this.clearToTx = true
+		return true
+	},
+
 	pollStatus() {
 		cmdOnPollInterval.forEach((element) => {
 			this.addCmdtoQueue(element)
@@ -129,14 +146,17 @@ module.exports = {
 				this.clearToTx = true
 				clearTimeout(this.keepAliveTimer)
 				clearTimeout(this.meterTimer)
+				clearTimeout(this.timeOutTimer)
 			})
 			this.socket.on('connect', () => {
 				this.log('info', 'Connected')
 				this.clearToTx = true
+				clearTimeout(this.timeOutTimer)
 				this.queryOnConnect()
 			})
 			this.socket.on('data', (chunk) => {
 				this.clearToTx = true
+				clearTimeout(this.timeOutTimer)
 				this.processBuffer(chunk)
 			})
 		} else {

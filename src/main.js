@@ -16,6 +16,7 @@ class DUGAN_AUTOMIXER extends InstanceBase {
 		super(internal)
 		Object.assign(this, { ...config, ...util, ...tcp, ...processCmd, ...choices })
 		this.keepAliveTimer = {}
+		this.timeOutTimer = {}
 		this.cmdTimer = {}
 		this.cmdQueue = []
 		this.meterTimer = {}
@@ -41,9 +42,11 @@ class DUGAN_AUTOMIXER extends InstanceBase {
 		clearTimeout(this.keepAliveTimer)
 		clearTimeout(this.cmdTimer)
 		clearTimeout(this.meterTimer)
+		clearTimeout(this.timeOutTimer)
 		this.keepAliveTimer = null
 		this.cmdTimer = null
 		this.meterTimer = null
+		this.timeOutTimer = null
 		if (this.socket) {
 			await this.sendCommand(cmd.system.endSession)
 			this.socket.destroy()

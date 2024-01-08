@@ -1,7 +1,7 @@
 export const regexpCmd = new RegExp(/^([*])([a-zA-Z]{0,3})([,])/g)
 export const regexpSafeString = new RegExp(/^[^,*;:]{1,16}/g)
 export const msgDelay = [55, 60, 70, 100] //Dugan advice is 50ms minimum, but have often crashed unit at that rate
-export const meterCommands = [cmd.metering.channelStatus] //metering commands issued each meterInterval
+export const timeOutValue = 500
 export const duganModels = [
 	'0',
 	'1',
@@ -32,24 +32,6 @@ export const EOM = '\r\n'
 export const SOM = '*'
 export const paramSep = ',' //seperator between parameters
 export const cmdSep = ';' //seperator between responses when multiple sent in 1 message
-export const cmdOnConnect = [
-	cmd.system.config,
-	cmd.system.firmware,
-	cmd.system.blinkMode,
-	cmd.system.resourceUseage,
-	cmd.system.switchHeadroom,
-	cmd.scene.count,
-	cmd.scene.active,
-	cmd.system.linkGroup,
-	cmd.system.clock,
-	cmd.system.adatMirror,
-	cmd.system.connections,
-	cmd.system.sampleRate,
-	cmd.system.master,
-	cmd.system.channelOffset,
-	cmd.system.automixChannels,
-] //queries to be made on initial connection
-export const cmdOnPollInterval = [cmd.scene.active, cmd.scene.count] //queries to be made each poll interval
 export const errSyntax1 = 'Error: syntax'
 export const errSyntax2 = 'ERROR: syntax'
 export const errRange = 'Error: Channel number out of range'
@@ -145,3 +127,23 @@ export const cmd = {
 		pd: 'PD',
 	},
 }
+
+export const meterCommands = [cmd.metering.channelStatus] //metering commands issued each meterInterval
+export const cmdOnConnect = [
+	cmd.system.config,
+	cmd.system.firmware,
+	cmd.system.blinkMode,
+	cmd.system.resourceUseage,
+	cmd.system.switchHeadroom,
+	cmd.scene.count,
+	cmd.scene.active,
+	cmd.system.linkGroup,
+	cmd.system.clock,
+	cmd.system.adatMirror,
+	cmd.system.connections,
+	cmd.system.sampleRate,
+	cmd.system.master,
+	cmd.system.channelOffset,
+	cmd.system.automixChannels,
+] //queries to be made on initial connection
+export const cmdOnPollInterval = [cmd.scene.active, cmd.scene.count] //queries to be made each poll interval

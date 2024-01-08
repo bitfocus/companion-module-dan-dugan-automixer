@@ -42,7 +42,7 @@ module.exports = {
 			vals[i - index] = chunk[i]
 		}
 		switch (cmdRx) {
-			case SOM + cmd.channel.bulkParams:
+			case SOM + cmd.channel.bulkParams + paramSep:
 				if (vals.length < 438) {
 					// observed 454 but that may be with 'Dugan N >'
 					this.log('warn', `*GP response detected. Expected length > 438 bytes. Buffer length: ${vals.length}`)
@@ -102,7 +102,7 @@ module.exports = {
 					'channelGroupAssign'
 				)
 				break
-			case SOM + cmd.matrix.bulkParams:
+			case SOM + cmd.matrix.bulkParams + paramSep:
 				//get matrix params
 				//binary response
 				if (vals.length < 884) {
@@ -121,7 +121,7 @@ module.exports = {
 				break
 			// unknown data in indexes 868 - 891, 892 - 901
 			// perhaps 886 - 891 are matrix output patch
-			case SOM + cmd.metering.channelStatus:
+			case SOM + cmd.metering.channelStatus + paramSep:
 				//channel status
 				//binary response
 				if (vals.length < 235) {
