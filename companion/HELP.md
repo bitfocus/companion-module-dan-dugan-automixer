@@ -90,8 +90,8 @@ Enter the number of automix channels the unit is configured to for correct initi
 - **Scene - Active Has Changed** True if any parameter has been changed from the recalled Scene
 - **Scene - Count** Number of saved scenes
 
-- **System** 
-System related Varaibles, many are read only. Several arent directly exposed in the dugan software.
+- **System**
+  System related variables, many are read only. Several arent directly exposed in the dugan software.
 - **Adat Mirror**
 - **Blink Mode**
 - **Channel Count**
