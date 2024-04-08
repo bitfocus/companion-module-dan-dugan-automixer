@@ -131,7 +131,7 @@ module.exports = {
 
 	initTCP() {
 		if (this.socket !== undefined) {
-			this.addCmdtoQueue(cmd.system.endSession)
+			this.sendCommand(cmd.system.endSession)
 			this.socket.destroy()
 			delete this.socket
 		}
