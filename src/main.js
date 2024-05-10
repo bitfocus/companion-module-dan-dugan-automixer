@@ -23,7 +23,7 @@ class DUGAN_AUTOMIXER extends InstanceBase {
 		this.clearToTx = true
 	}
 	async init(config) {
-		this.updateStatus('Starting')
+		this.updateStatus(InstanceStatus.Connecting)
 		this.config = config
 		this.initVariables()
 		this.updateActions() // export actions
@@ -52,9 +52,8 @@ class DUGAN_AUTOMIXER extends InstanceBase {
 			this.socket.destroy()
 		} else if (this.udp) {
 			this.udp.destroy()
-		} else {
-			this.updateStatus(InstanceStatus.Disconnected)
 		}
+		this.updateStatus(InstanceStatus.Disconnected)
 	}
 
 	setIterativeVariables() {

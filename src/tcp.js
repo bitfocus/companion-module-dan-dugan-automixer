@@ -134,15 +134,18 @@ module.exports = {
 			this.sendCommand(cmd.system.endSession)
 			this.socket.destroy()
 			delete this.socket
+			this.updateStatus(InstanceStatus.Disconnected)
 		}
 		if (this.config.host) {
 			this.log('debug', 'Creating New Socket')
+			this.updateStatus(InstanceStatus.Connecting)
 			this.socket = new TCPHelper(this.config.host, this.config.port)
 			this.socket.on('status_change', (status, message) => {
 				this.updateStatus(status, message)
 			})
 			this.socket.on('error', (err) => {
 				this.log('error', `Network error: ${err.message}`)
+				this.updateStatus(InstanceStatus.ConnectionFailure, err.message)
 				this.clearToTx = true
 				clearTimeout(this.keepAliveTimer)
 				clearTimeout(this.meterTimer)
@@ -150,6 +153,7 @@ module.exports = {
 			})
 			this.socket.on('connect', () => {
 				this.log('info', 'Connected')
+				this.updateStatus(InstanceStatus.Ok)
 				this.clearToTx = true
 				clearTimeout(this.timeOutTimer)
 				this.queryOnConnect()
