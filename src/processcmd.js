@@ -400,6 +400,20 @@ module.exports = {
 					this.groupMute[2] = Number(params[1]) & grpBval
 					this.groupMute[3] = Number(params[1]) & grpCval
 					this.checkFeedbacks('groupMute')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_mute',
+								options: {
+									groupA: this.groupMute[1],
+									groupB: this.groupMute[2],
+									groupC: this.groupMute[3],
+									query: false,
+								},
+							},
+							`group_mute`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected SM response: ${str}`)
 				}
@@ -412,6 +426,20 @@ module.exports = {
 					this.groupPreset[2] = Number(params[1]) & grpBval
 					this.groupPreset[3] = Number(params[1]) & grpCval
 					this.checkFeedbacks('groupPreset')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_preset',
+								options: {
+									groupA: this.groupPreset[1],
+									groupB: this.groupPreset[2],
+									groupC: this.groupPreset[3],
+									query: false,
+								},
+							},
+							`group_preset`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected SP response: ${str}`)
 				}
@@ -424,6 +452,20 @@ module.exports = {
 					this.groupOverride[2] = Number(params[1]) & grpBval
 					this.groupOverride[3] = Number(params[1]) & grpCval
 					this.checkFeedbacks('groupOverride')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_override',
+								options: {
+									groupA: this.groupOverride[1],
+									groupB: this.groupOverride[2],
+									groupC: this.groupOverride[3],
+									query: false,
+								},
+							},
+							`group_override`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected SO response: ${str}`)
 				}
@@ -435,6 +477,20 @@ module.exports = {
 					this.groupLastHold[1] = Number(params[1]) & grpAval
 					this.groupLastHold[2] = Number(params[1]) & grpBval
 					this.groupLastHold[3] = Number(params[1]) & grpCval
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_lasthold',
+								options: {
+									groupA: this.groupLastHold[1],
+									groupB: this.groupLastHold[2],
+									groupC: this.groupLastHold[3],
+									query: false,
+								},
+							},
+							`group_lasthold`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected LH response: ${str}`)
 				}
