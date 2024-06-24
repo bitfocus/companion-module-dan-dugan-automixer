@@ -217,6 +217,11 @@ class DUGAN_AUTOMIXER extends InstanceBase {
 		}
 	}
 
+	// Track whether actions are being recorded
+	handleStartStopRecordActions(isRecording) {
+		this.isRecordingActions = isRecording
+	}
+
 	updateActions() {
 		UpdateActions(this)
 	}
