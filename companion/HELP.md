@@ -188,6 +188,9 @@ Set the the channel count to the appropriate value, turn the metering off, and i
 
 ## Version History
 
+### Version 1.0.5
+- Update companion-module-tools
+
 ### Version 1.0.4
 - Better status updates
 - Update companion-module-base
