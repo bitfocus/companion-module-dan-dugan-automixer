@@ -217,6 +217,15 @@ module.exports = {
 				if (params.length == 3) {
 					this.channelsMode[Number(params[1])] = Number(params[2])
 					this.checkFeedbacks('channelMode')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'channel_mode',
+								options: { channel: Number(params[1]), mode: Number(params[2]), query: false },
+							},
+							`channel_mode ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected CM response: ${str}`)
 				}
@@ -227,6 +236,15 @@ module.exports = {
 				if (params.length == 3) {
 					this.channelsPreset[Number(params[1])] = Number(params[2])
 					this.checkFeedbacks('channelPreset')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'channel_preset',
+								options: { channel: Number(params[1]), preset: Number(params[2]), query: false },
+							},
+							`channel_preset ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected CP response: ${str}`)
 				}
@@ -237,6 +255,15 @@ module.exports = {
 				if (params.length == 3) {
 					this.channelsBypass[Number(params[1])] = Number(params[2])
 					this.checkFeedbacks('channelBypass')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'channel_bypass',
+								options: { channel: Number(params[1]), bypass: Number(params[2]), query: false },
+							},
+							`channel_bypass ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected BP response: ${str}`)
 				}
@@ -247,6 +274,15 @@ module.exports = {
 				if (params.length == 3) {
 					this.channelsOverride[Number(params[1])] = Number(params[2])
 					this.checkFeedbacks('channelOverride')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'channel_override',
+								options: { channel: Number(params[1]), override: Number(params[2]), query: false },
+							},
+							`channel_override ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected CO response: ${str}`)
 				}
@@ -259,6 +295,21 @@ module.exports = {
 					//then push to variable
 					varObject['channelWeight' + params[1]] = Number(params[2])
 					this.setVariableValues(varObject)
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'channel_weight',
+								options: {
+									channel: Number(params[1]),
+									weight: Number(params[2]),
+									query: false,
+									useVar: false,
+									weightVar: '',
+								},
+							},
+							`channel_weight ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected CW response: ${str}`)
 				}
@@ -269,6 +320,15 @@ module.exports = {
 				if (params.length == 3) {
 					this.channelsMusic[Number(params[1])] = Number(params[2])
 					this.checkFeedbacks('channelMusic')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'channel_music_mode',
+								options: { channel: Number(params[1]), music: Number(params[2]), query: false },
+							},
+							`channel_music_mode ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected MR response: ${str}`)
 				}
@@ -279,6 +339,15 @@ module.exports = {
 				if (params.length == 3) {
 					this.channelsNom[Number(params[1])] = Number(params[2])
 					this.checkFeedbacks('channelNOM')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'channel_NOM_mode',
+								options: { channel: Number(params[1]), nom: Number(params[2]), query: false },
+							},
+							`channel_NOM_mode ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected NE response: ${str}`)
 				}
@@ -290,6 +359,15 @@ module.exports = {
 					this.log('info', `Channel: ${params[1]} assigned to group: ${params[2]}`)
 					this.channelsGroupAssign[Number(params[1])] = Number(params[2])
 					this.checkFeedbacks('channelGroupAssign')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'channel_group_assign',
+								options: { channel: Number(params[1]), group: Number(params[2]), query: false },
+							},
+							`channel_group_assign ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected GA response: ${str}`)
 				}
@@ -301,6 +379,15 @@ module.exports = {
 					this.channelsName[Number(params[1])] = params[2]
 					varObject[`channelName${params[1]}`] = params[2]
 					this.setVariableValues(varObject)
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'channel_name',
+								options: { channel: Number(params[1]), name: params[2], query: false },
+							},
+							`channel_name ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected CN response: ${str}`)
 				}
@@ -313,6 +400,20 @@ module.exports = {
 					this.groupMute[2] = Number(params[1]) & grpBval
 					this.groupMute[3] = Number(params[1]) & grpCval
 					this.checkFeedbacks('groupMute')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_mute',
+								options: {
+									groupA: this.groupMute[1],
+									groupB: this.groupMute[2],
+									groupC: this.groupMute[3],
+									query: false,
+								},
+							},
+							`group_mute`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected SM response: ${str}`)
 				}
@@ -325,6 +426,20 @@ module.exports = {
 					this.groupPreset[2] = Number(params[1]) & grpBval
 					this.groupPreset[3] = Number(params[1]) & grpCval
 					this.checkFeedbacks('groupPreset')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_preset',
+								options: {
+									groupA: this.groupPreset[1],
+									groupB: this.groupPreset[2],
+									groupC: this.groupPreset[3],
+									query: false,
+								},
+							},
+							`group_preset`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected SP response: ${str}`)
 				}
@@ -337,6 +452,20 @@ module.exports = {
 					this.groupOverride[2] = Number(params[1]) & grpBval
 					this.groupOverride[3] = Number(params[1]) & grpCval
 					this.checkFeedbacks('groupOverride')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_override',
+								options: {
+									groupA: this.groupOverride[1],
+									groupB: this.groupOverride[2],
+									groupC: this.groupOverride[3],
+									query: false,
+								},
+							},
+							`group_override`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected SO response: ${str}`)
 				}
@@ -348,6 +477,20 @@ module.exports = {
 					this.groupLastHold[1] = Number(params[1]) & grpAval
 					this.groupLastHold[2] = Number(params[1]) & grpBval
 					this.groupLastHold[3] = Number(params[1]) & grpCval
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_lasthold',
+								options: {
+									groupA: this.groupLastHold[1],
+									groupB: this.groupLastHold[2],
+									groupC: this.groupLastHold[3],
+									query: false,
+								},
+							},
+							`group_lasthold`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected LH response: ${str}`)
 				}
@@ -360,6 +503,21 @@ module.exports = {
 					this.groupAutomixDepth[Number(params[1])] = Number(params[2])
 					varObject['groupAD' + params[1]] = Number(params[2])
 					this.setVariableValues(varObject)
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_automixdepth',
+								options: {
+									group: Number(params[1]),
+									depth: Number(params[2]),
+									useVar: false,
+									depthVar: '',
+									query: false,
+								},
+							},
+							`group_automixdepth ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected AD/ME response: ${str}`)
 				}
@@ -371,6 +529,21 @@ module.exports = {
 					this.groupNOMgainlimit[Number(params[1])] = Number(params[2])
 					varObject[`groupNOM${params[1]}`] = Number(params[2])
 					this.setVariableValues(varObject)
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_NOMgainlimit',
+								options: {
+									group: Number(params[1]),
+									nomgain: Number(params[2]),
+									useVar: false,
+									nomVar: '',
+									query: false,
+								},
+							},
+							`group_NOMgainlimit ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected NL response: ${str}`)
 				}
@@ -382,6 +555,21 @@ module.exports = {
 					this.groupMusicThreshold[Number(params[1])] = Number(params[2])
 					varObject[`groupMST${params[1]}`] = Number(params[2])
 					this.setVariableValues(varObject)
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_musicthreshold',
+								options: {
+									group: Number(params[1]),
+									threshold: Number(params[2]),
+									useVar: false,
+									thresholdVar: '',
+									query: false,
+								},
+							},
+							`group_musicthreshold ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected MT response: ${str}`)
 				}
@@ -392,6 +580,19 @@ module.exports = {
 				if (params.length == 3) {
 					this.groupMusicInput[Number(params[1])] = Number(params[2])
 					this.checkFeedbacks('groupMusicInput')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'group_musicinput',
+								options: {
+									group: Number(params[1]),
+									input: Number(params[2]),
+									query: false,
+								},
+							},
+							`group_musicinput ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected MXM response: ${str}`)
 				}
@@ -402,6 +603,19 @@ module.exports = {
 				if (params.length == 3) {
 					this.matrixMute[Number(params[1])] = Number(params[2])
 					this.checkFeedbacks('matrixMuted')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'matrix_mute',
+								options: {
+									matrix: Number(params[1]),
+									mute: Number(params[2]),
+									query: false,
+								},
+							},
+							`matrix_mute ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected MXM response: ${str}`)
 				}
@@ -412,6 +626,19 @@ module.exports = {
 				if (params.length == 3) {
 					this.matrixPolarity[Number(params[1])] = Number(params[2])
 					this.checkFeedbacks('matrixPolarity')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'matrix_polarity',
+								options: {
+									matrix: Number(params[1]),
+									polarity: Number(params[2]),
+									query: false,
+								},
+							},
+							`matrix_polarity ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected MXP response: ${str}`)
 				}
@@ -423,6 +650,21 @@ module.exports = {
 					this.matrixGain[Number(params[1])] = Number(params[2])
 					varObject[`matrixOutFader${params[1]}`] = Number(params[2])
 					this.setVariableValues(varObject)
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'matrix_gain',
+								options: {
+									matrix: Number(params[1]),
+									gain: Number(params[2]),
+									query: false,
+									useVar: false,
+									gainVar: '',
+								},
+							},
+							`matrix_gain ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected MXV response: ${str}`)
 				}
@@ -433,6 +675,19 @@ module.exports = {
 				if (params.length == 3) {
 					this.matrixOutput[Number(params[1])] = Number(params[2])
 					this.checkFeedbacks('matrixOutput')
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'matrix_output',
+								options: {
+									matrix: Number(params[1]),
+									output: Number(params[2]),
+									query: false,
+								},
+							},
+							`matrix_output ${Number(params[1])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected MXM response: ${str}`)
 				}
@@ -444,6 +699,22 @@ module.exports = {
 					this.matrixXpoint[Number(params[1])][Number(params[2])] = Number(params[3])
 					varObject[`matrix${params[1]}Xpoint${params[2]}`] = Number(params[3])
 					this.setVariableValues(varObject)
+					if (this.isRecordingActions) {
+						this.recordAction(
+							{
+								actionId: 'matrix_crosspoint',
+								options: {
+									matrix: Number(params[1]),
+									channel: Number(params[2]),
+									gain: Number(params[3]),
+									query: false,
+									useVar: false,
+									gainVar: '',
+								},
+							},
+							`matrix_crosspoint ${Number(params[1])} ${Number(params[2])}`
+						)
+					}
 				} else {
 					this.log('warn', `Unexpected OM response: ${str}`)
 				}
@@ -488,6 +759,17 @@ module.exports = {
 					if (err == -1) {
 						this.log('info', `Scene Recalled: ${params[1]}`)
 						this.addCmdtoQueue(cmd.scene.active)
+						if (this.isRecordingActions) {
+							this.recordAction(
+								{
+									actionId: 'sc_recall',
+									options: {
+										name: params[1],
+									},
+								},
+								`sc_recall`
+							)
+						}
 					} else {
 						this.log('warn', str)
 					}
@@ -543,10 +825,32 @@ module.exports = {
 				//channel defaults
 				this.log('info', `Channels reset to defaults. ${str}`)
 				this.addCmdtoQueue(cmd.scene.active)
+				if (this.isRecordingActions) {
+					this.recordAction(
+						{
+							actionId: 'recall_default',
+							options: {
+								mode: 'FP',
+							},
+						},
+						`recall_default`
+					)
+				}
 				break
 			case SOM + cmd.matrix.defaults:
 				//matrix defauls
 				this.log('info', `Matrix reset to defaults. ${str}`)
+				if (this.isRecordingActions) {
+					this.recordAction(
+						{
+							actionId: 'recall_default',
+							options: {
+								mode: 'RM',
+							},
+						},
+						`recall_default`
+					)
+				}
 				break
 			case SOM + cmd.system.subscribe:
 				//subscribe unsolicited
