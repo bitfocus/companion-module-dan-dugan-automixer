@@ -23,7 +23,7 @@ module.exports = {
 	async processCmdQueue() {
 		if (this.cmdQueue.length > 0 && this.clearToTx) {
 			//dont send command if still waiting for response from last command
-			this.sendCommand(await this.cmdQueue.splice(0, 1))
+			this.sendCommand(await this.cmdQueue.shift())
 			this.cmdTimer = setTimeout(() => {
 				this.processCmdQueue()
 			}, msgDelay[this.config.rate])
