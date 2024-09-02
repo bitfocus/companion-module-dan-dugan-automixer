@@ -54,7 +54,7 @@ module.exports = {
 				if (this.config.channels != vals[68]) {
 					this.log(
 						'warn',
-						`Mismatch between configured channels: ${this.config.channels} and connected device: ${vals[68]}. Changing configuration.`
+						`Mismatch between configured channels: ${this.config.channels} and connected device: ${vals[68]}. Changing configuration.`,
 					)
 					this.config.channels = vals[68]
 					this.initVariables()
@@ -99,7 +99,7 @@ module.exports = {
 					'channelOverride',
 					'channelMusic',
 					'channelNOM',
-					'channelGroupAssign'
+					'channelGroupAssign',
 				)
 				break
 			case SOM + cmd.matrix.bulkParams + paramSep:
@@ -138,7 +138,7 @@ module.exports = {
 							'Unexpected response signal flags: ' +
 								parseInt(vals[i + 3], 10) +
 								' clip flags: ' +
-								parseInt(vals[i + 11], 10)
+								parseInt(vals[i + 11], 10),
 						)
 						return undefined
 					}
@@ -176,7 +176,7 @@ module.exports = {
 					'channelOutputPeak',
 					'matrixLevel',
 					'groupNOMgain',
-					'groupMusicPeak'
+					'groupMusicPeak',
 				)
 				this.checkIsTalking()
 				break
@@ -223,7 +223,7 @@ module.exports = {
 								actionId: 'channel_mode',
 								options: { channel: Number(params[1]), mode: Number(params[2]), query: false },
 							},
-							`channel_mode ${Number(params[1])}`
+							`channel_mode ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -242,7 +242,7 @@ module.exports = {
 								actionId: 'channel_preset',
 								options: { channel: Number(params[1]), preset: Number(params[2]), query: false },
 							},
-							`channel_preset ${Number(params[1])}`
+							`channel_preset ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -261,7 +261,7 @@ module.exports = {
 								actionId: 'channel_bypass',
 								options: { channel: Number(params[1]), bypass: Number(params[2]), query: false },
 							},
-							`channel_bypass ${Number(params[1])}`
+							`channel_bypass ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -280,7 +280,7 @@ module.exports = {
 								actionId: 'channel_override',
 								options: { channel: Number(params[1]), override: Number(params[2]), query: false },
 							},
-							`channel_override ${Number(params[1])}`
+							`channel_override ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -307,7 +307,7 @@ module.exports = {
 									weightVar: '',
 								},
 							},
-							`channel_weight ${Number(params[1])}`
+							`channel_weight ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -326,7 +326,7 @@ module.exports = {
 								actionId: 'channel_music_mode',
 								options: { channel: Number(params[1]), music: Number(params[2]), query: false },
 							},
-							`channel_music_mode ${Number(params[1])}`
+							`channel_music_mode ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -345,7 +345,7 @@ module.exports = {
 								actionId: 'channel_NOM_mode',
 								options: { channel: Number(params[1]), nom: Number(params[2]), query: false },
 							},
-							`channel_NOM_mode ${Number(params[1])}`
+							`channel_NOM_mode ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -365,7 +365,7 @@ module.exports = {
 								actionId: 'channel_group_assign',
 								options: { channel: Number(params[1]), group: Number(params[2]), query: false },
 							},
-							`channel_group_assign ${Number(params[1])}`
+							`channel_group_assign ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -385,7 +385,7 @@ module.exports = {
 								actionId: 'channel_name',
 								options: { channel: Number(params[1]), name: params[2], query: false },
 							},
-							`channel_name ${Number(params[1])}`
+							`channel_name ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -411,7 +411,7 @@ module.exports = {
 									query: false,
 								},
 							},
-							`group_mute`
+							`group_mute`,
 						)
 					}
 				} else {
@@ -437,7 +437,7 @@ module.exports = {
 									query: false,
 								},
 							},
-							`group_preset`
+							`group_preset`,
 						)
 					}
 				} else {
@@ -463,7 +463,7 @@ module.exports = {
 									query: false,
 								},
 							},
-							`group_override`
+							`group_override`,
 						)
 					}
 				} else {
@@ -488,7 +488,7 @@ module.exports = {
 									query: false,
 								},
 							},
-							`group_lasthold`
+							`group_lasthold`,
 						)
 					}
 				} else {
@@ -515,7 +515,7 @@ module.exports = {
 									query: false,
 								},
 							},
-							`group_automixdepth ${Number(params[1])}`
+							`group_automixdepth ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -541,7 +541,7 @@ module.exports = {
 									query: false,
 								},
 							},
-							`group_NOMgainlimit ${Number(params[1])}`
+							`group_NOMgainlimit ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -567,7 +567,7 @@ module.exports = {
 									query: false,
 								},
 							},
-							`group_musicthreshold ${Number(params[1])}`
+							`group_musicthreshold ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -590,7 +590,7 @@ module.exports = {
 									query: false,
 								},
 							},
-							`group_musicinput ${Number(params[1])}`
+							`group_musicinput ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -613,7 +613,7 @@ module.exports = {
 									query: false,
 								},
 							},
-							`matrix_mute ${Number(params[1])}`
+							`matrix_mute ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -636,7 +636,7 @@ module.exports = {
 									query: false,
 								},
 							},
-							`matrix_polarity ${Number(params[1])}`
+							`matrix_polarity ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -662,7 +662,7 @@ module.exports = {
 									gainVar: '',
 								},
 							},
-							`matrix_gain ${Number(params[1])}`
+							`matrix_gain ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -685,7 +685,7 @@ module.exports = {
 									query: false,
 								},
 							},
-							`matrix_output ${Number(params[1])}`
+							`matrix_output ${Number(params[1])}`,
 						)
 					}
 				} else {
@@ -712,7 +712,7 @@ module.exports = {
 									gainVar: '',
 								},
 							},
-							`matrix_crosspoint ${Number(params[1])} ${Number(params[2])}`
+							`matrix_crosspoint ${Number(params[1])} ${Number(params[2])}`,
 						)
 					}
 				} else {
@@ -767,7 +767,7 @@ module.exports = {
 										name: params[1],
 									},
 								},
-								`sc_recall`
+								`sc_recall`,
 							)
 						}
 					} else {
@@ -833,7 +833,7 @@ module.exports = {
 								mode: 'FP',
 							},
 						},
-						`recall_default`
+						`recall_default`,
 					)
 				}
 				break
@@ -848,7 +848,7 @@ module.exports = {
 								mode: 'RM',
 							},
 						},
-						`recall_default`
+						`recall_default`,
 					)
 				}
 				break
@@ -920,8 +920,8 @@ module.exports = {
 						this.log(
 							'warn',
 							`Mismatch between configured channels: ${this.config.channels} and connected device: ${Number(
-								params[1]
-							)}. Changing configuration.`
+								params[1],
+							)}. Changing configuration.`,
 						)
 						this.config.channels = Number(params[1])
 						this.initVariables()
@@ -994,7 +994,7 @@ module.exports = {
 							'warn',
 							`Mismatch between configured model: ${duganModels[this.config.model]} and connected device: ${
 								duganModels[params[1]]
-							}`
+							}`,
 						)
 						this.config.model = Number(params[1])
 					}
@@ -1002,8 +1002,8 @@ module.exports = {
 						this.log(
 							'warn',
 							`Mismatch between configured channels: ${this.config.channels} and connected device: ${Number(
-								params[12]
-							)}. Changing configuration.`
+								params[12],
+							)}. Changing configuration.`,
 						)
 						this.config.channels = Number(params[12])
 						this.initVariables()
