@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 const variableDefaults = {
 	deviceType: 'unknown',
 	hostName: 'unknown',
