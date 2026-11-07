@@ -25,7 +25,7 @@ The Model M & N default to 64, but can be set to any value between 8 and 64. Onc
 
 **Messaging Rate**
 
-Can be left at fast most of the time. If you find commands are getting lost or responses are missing, especially over a WAN you may try slowing it down. Similarly the metering rate determines how fast the level and gain meters are polled - this will only work with the Model M & N. The dugans are succeptable to crashing when they recieve messages too quickly. If you encounter this issue, try slowing the messaging rate.
+Can be left at fast most of the time. Each message waits for the unit to reply, for up to half a second, and the messaging rate sets the least time between messages on top of that. If you find commands are getting lost or responses are missing, especially over a WAN you may try slowing it down. Similarly the metering rate determines how fast the level and gain meters are polled - this will only work with the Model M & N. The dugans are succeptable to crashing when they recieve messages too quickly. If you encounter this issue, try slowing the messaging rate.
 
 **Unsolicited message subscription**
 
@@ -37,6 +37,8 @@ Sets the operational threshold for the Is Talking varibles. The function returns
 
 ## Actions
 
+Any option can be switched to an expression, to drive it from variables. This replaces the Use Variable checkboxes and the custom values of earlier versions, and buttons made with those are converted when the module is updated. Channel, group and matrix options take a number in expression mode.
+
 - **Channel - Bypass** Query / Change Channel Bypass
 - **Channel - Group Assignment** Query / Change Channel Group Assignment
 - **Channel - Mode** Query / Change Channel Mode: Manual, Auto, Mute
@@ -45,22 +47,28 @@ Sets the operational threshold for the Is Talking varibles. The function returns
 - **Channel - NOM Mode** Query / Change Channel NOM Mode
 - **Channel - Override** Query / Change Channel Override
 - **Channel - Preset** Query / Change Channel Preset: Manual, Auto, Mute
-- **Channel - Weight** Query / Change Channel Weight. Accepts variables
+- **Channel - Weight** Query / Change Channel Weight
+- **Channel - Weight, Relative** Adjust Channel Weight
 
-- **Group - Automix Depth** Query / Change Group Automix Depth. Accepts variables
+- **Group - Automix Depth** Query / Change Group Automix Depth
+- **Group - Automix Depth, Relative** Adjust Group Automix Depth
 - **Group - Last Hold** Query / Change Group Last Hold
-- **Group - Music System Threshold** Query / Change Group Music System Threshold. Accepts variables
+- **Group - Music System Threshold** Query / Change Group Music System Threshold
+- **Group - Music System Threshold, Relative** Adjust Group Music System Threshold
 - **Group - Music System Threshold Input** Query / Change Group Music System Threshold Input
 - **Group - Mute** Query / Change Group Mute
-- **Group - NOM Gain Limit** Query / Change Group Gain Limit. Accepts variables
+- **Group - NOM Gain Limit** Query / Change Group Gain Limit
+- **Group - NOM Gain Limit, Relative** Adjust Group Gain Limit
 - **Group - Override** Query / Change Group Override
 - **Group - Preset** Query / Change Group Preset
 
 - **Matrix - Bus Mute** Query / Change Matrix Mute
 - **Matrix - Bus Polarity** Query / Change Matrix Polarity
 - **Matrix - Crosspoint** Query / Change Matrix Crosspoint Gain
-- **Matrix - Gain** Query / Change Matrix Output Gain. Accepts variables
-- **Matrix - Output** Query / Change Matrix Output. Accepts variables
+- **Matrix - Crosspoint, Relative** Adjust Matrix Crosspoint Gain
+- **Matrix - Gain** Query / Change Matrix Output Gain
+- **Matrix - Gain, Relative** Adjust Matrix Output Gain
+- **Matrix - Output** Query / Change Matrix Output
 
 - **Metering** Query metering and channel flags.
 
@@ -84,11 +92,9 @@ Sets the operational threshold for the Is Talking varibles. The function returns
 - **System - Blink Mode** Query / Change blink mode
 - **System - Clock Source** Query / Change clock Source
 - **System - Link Group** Query / Change link group
-- **System - Clock Source** Query / Change clock Source
 - **System - Name** Query / Change unit name. Accepts variables
 - **System - Network** Query / Change IP, Subnet or Gateway address
 - **System - Network DHCP** Query / Change DHCP
-- **System - Name** Query / Change unit name. Accepts variables
 - **System - Subscribe Unsolicited** Query / Change unsolicited messages
 
 ## Variables
@@ -186,49 +192,10 @@ All feedbacks are boolean. Feedbacks will force the subscription level to at lea
 
 ## Action Recorder
 
-The Action Recorder will record any channel, group or matrix changes when engaged.
+The Action Recorder will record any channel, group or matrix change when engaged, and scene recalls. Changes made from the unit or other clients are recorded too, as long as unsolicited messages are on. Only changes are recorded, so the module's own queries add nothing.
 
 ## Support for other models
 
 Only the Model M & N are supported. With that said, the dugan units share a common api.
 The Model M & N represent a complete set of API commands. All other units (MY-16, Model-E3A, etc) support a subset of of these commands. The core channel controls are supported by all units.
 Set the the channel count to the appropriate value, turn the metering off, and ignore functions not supported by your unit. This is untested.
-
-## Version History
-
-## Version 1.1.3
-
-- Use Node 22
-- Update companion-module-base
-- Update companion-module-tools
-
-## Version 1.1.1
-
-- Update companion-module-base
-- Update companion-module-tools
-
-### Version 1.1.0
-
-- Action Recorder
-- Update companion-module-tools
-
-### Version 1.0.4
-
-- Better status updates
-- Update companion-module-base
-
-### Version 1.0.3
-
-- Update help
-- Update companion-module-tools
-
-### Version 1.0.1
-
-- Add timeout clearToTx (500ms).
-- Update help
-- Code refactor
-- Update companion-module-base & companion-module-tools
-
-### Version 1.0.0
-
-- Initial release

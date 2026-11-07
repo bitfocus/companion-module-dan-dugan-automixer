@@ -1,9 +1,11 @@
-.vscode/
-.yarn/
 node_modules/
 package-lock.json
 /pkg
-/pkg.tgz
-*.zip
-*.log
+/*.tgz
+/dist
 DEBUG-*
+/.yarn
+/.vscode
+*.csv
+/coverage
+.DS_Store
